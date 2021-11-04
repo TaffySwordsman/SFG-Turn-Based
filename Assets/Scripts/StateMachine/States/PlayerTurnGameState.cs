@@ -31,4 +31,8 @@ public class PlayerTurnGameState : TurnGameState
         // change enemy turn state
         StateMachine.ChangeState<EnemyTurnGameState>();
     }
+    public void EndPlayerTurn()
+    {
+        OnPressedConfirm();
+    }
 }
