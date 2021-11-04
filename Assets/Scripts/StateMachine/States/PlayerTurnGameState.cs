@@ -28,8 +28,20 @@ public class PlayerTurnGameState : TurnGameState
     void OnPressedConfirm()
     {
         Debug.Log("Attempt to enter Enemy State!");
-        // change enemy turn state
-        StateMachine.ChangeState<EnemyTurnGameState>();
+
+        if (_playerTurnCount > 2)
+        {
+            int randInt = Random.Range(0, 10);
+            if (randInt > 5)
+                StateMachine.ChangeState<TurnGameWinState>();
+            else
+                StateMachine.ChangeState<TurnGameLoseState>();
+        }
+        else
+        {
+            // change enemy turn state
+            StateMachine.ChangeState<EnemyTurnGameState>();
+        }
     }
     public void EndPlayerTurn()
     {

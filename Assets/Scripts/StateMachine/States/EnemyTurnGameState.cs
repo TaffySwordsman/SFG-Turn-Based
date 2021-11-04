@@ -30,6 +30,6 @@ public class EnemyTurnGameState : TurnGameState
         Debug.Log("Enemy performs action");
         EnemyTurnEnded?.Invoke();
         // turn over, back to player.
-        StateMachine.ChangeState<TurnGameWinState>();
+        StateMachine.ChangeState<PlayerTurnGameState>();
     }
 }
