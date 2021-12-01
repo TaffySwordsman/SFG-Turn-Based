@@ -8,7 +8,7 @@ ModelImporter:
     second: mixamo.com
   - first:
       74: -7913326497561321377
-    second: Mixamo_POLYGON_Mini@Guitar Jamming
+    second: Guitar Jamming
   - first:
       74: -8667494620522143154
     second: Mixamo_POLYGON_Mini@Guitar Jamming
@@ -41,7 +41,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mixamo_POLYGON_Mini@Guitar Jamming
+      name: Guitar Jamming
       takeName: mixamo.com
       internalID: -8667494620522143154
       firstFrame: 0

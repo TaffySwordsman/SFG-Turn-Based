@@ -8,7 +8,7 @@ ModelImporter:
     second: mixamo.com
   - first:
       74: 7065447258957379344
-    second: Mixamo_POLYGON_Mini@Standing Equip Bow
+    second: Standing Equip Bow
   - first:
       74: 6548466157733702276
     second: Mixamo_POLYGON_Mini@Standing Equip Bow
@@ -41,7 +41,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mixamo_POLYGON_Mini@Standing Equip Bow
+      name: Standing Equip Bow
       takeName: mixamo.com
       internalID: 6548466157733702276
       firstFrame: 0

@@ -8,7 +8,7 @@ ModelImporter:
     second: mixamo.com
   - first:
       74: 525671191045164507
-    second: Mixamo_POLYGON_Mini@Guitar Idle
+    second: Guitar Idle
   - first:
       74: 477248192000820203
     second: Mixamo_POLYGON_Mini@Guitar Idle
@@ -41,7 +41,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mixamo_POLYGON_Mini@Guitar Idle
+      name: Guitar Idle
       takeName: mixamo.com
       internalID: 477248192000820203
       firstFrame: 0

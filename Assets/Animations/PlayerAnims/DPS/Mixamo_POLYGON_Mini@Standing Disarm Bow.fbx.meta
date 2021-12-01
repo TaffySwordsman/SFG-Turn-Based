@@ -8,7 +8,7 @@ ModelImporter:
     second: mixamo.com
   - first:
       74: -5797796725003767150
-    second: Mixamo_POLYGON_Mini@Standing Disarm Bow
+    second: Standing Disarm Bow
   - first:
       74: 3788092912929743450
     second: Mixamo_POLYGON_Mini@Standing Disarm Bow
@@ -41,7 +41,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mixamo_POLYGON_Mini@Standing Disarm Bow
+      name: Standing Disarm Bow
       takeName: mixamo.com
       internalID: 3788092912929743450
       firstFrame: 0
