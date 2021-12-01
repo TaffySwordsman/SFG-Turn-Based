@@ -479,7 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1766864638515097665}
   - component: {fileID: 1857449380788310799}
-  - component: {fileID: 1770374427724240402}
+  - component: {fileID: 6045422201105782015}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -522,7 +522,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1770374427724240402
+--- !u!114 &6045422201105782015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -531,13 +531,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1770374427724240401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd5639585bc9754a9ed459af7066689, type: 3}
+  m_Script: {fileID: 11500000, guid: e78ecaa69d4ffba41a191a5d250d5294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Paladin
   weaponEquipped: {fileID: 1770787589806763557}
   weaponUnequipped: {fileID: 1770787589885613488}
   _maxHealth: 100
-  currentHealth: 100
+  _currentHealth: 100
 --- !u!1 &1770375272305312331
 GameObject:
   m_ObjectHideFlags: 0

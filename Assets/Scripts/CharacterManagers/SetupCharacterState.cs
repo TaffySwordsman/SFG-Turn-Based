@@ -1,13 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SetupTurnGameState : TurnGameState
+public class SetupCharacterState : CharacterState
 {
     bool _activated = false;
 
     public override void Enter()
     {
         Debug.Log("Setup: ...Entering");
-
+        
         // Don't use ChangeState while still in Exit/Enter transition
         _activated = false;
     }
@@ -15,19 +17,9 @@ public class SetupTurnGameState : TurnGameState
     public override void Tick()
     {
         // Would usually have delays or Input
-        if (!_activated)
+        if(!_activated)
         {
             _activated = true;
-
-            // Set up players and enemies
-            foreach (CharacterSM player in StateMachine.PlayerCharacters)
-            {
-
-            }
-            foreach (CharacterSM enemy in StateMachine.EnemyCharacters)
-            {
-
-            }
             StateMachine.ChangeState<PlayerTurnGameState>();
         }
     }

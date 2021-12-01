@@ -13,7 +13,7 @@ public abstract class StateMachine : MonoBehaviour
         T targetState = GetComponent<T>();
         if (targetState == null)
         {
-            Debug.LogWarning("Cannot change to state, as it does not exist on the State Machien Object."
+            Debug.LogWarning("Cannot change to state, as it does not exist on the State Machine Object."
             + " Make sure you have the desired State attached to the State Machine!");
             return;
         }

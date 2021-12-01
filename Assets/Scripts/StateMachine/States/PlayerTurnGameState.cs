@@ -29,6 +29,7 @@ public class PlayerTurnGameState : TurnGameState
     {
         Debug.Log("Attempt to enter Enemy State!");
 
+        // Enemy Calculations
         if (_playerTurnCount > 2)
         {
             int randInt = Random.Range(0, 10);
