@@ -11,24 +11,29 @@ public class CharacterSM : StateMachine
     [SerializeField] private int _currentHealth;
     protected int maxHealth {get; private set;}
     protected int currentHealth {get; private set;}
+    protected Animator animator { get; private set; }
 
-    void SetupSM()
-    {
-        SetupCharacter();
-        ChangeState<CharacterIdleState>();
+    private void Awake() {
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    public void SetupCharacter()
+    public void SetupSM()
+    {
+        SetupCharacter();
+        // ChangeState<CharacterIdleState>();
+    }
+
+    void SetupCharacter()
     {
         maxHealth = _maxHealth;
         currentHealth = _currentHealth;
         Debug.Log("Creating " + characterName + " with " + _currentHealth + " health.");
+        animator.SetTrigger("DrawWeapon");
     }
 
     public void EquipWeapon()
