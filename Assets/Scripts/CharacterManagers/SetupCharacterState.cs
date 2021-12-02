@@ -20,7 +20,7 @@ public class SetupCharacterState : CharacterState
         if(!_activated)
         {
             _activated = true;
-            StateMachine.ChangeState<PlayerTurnGameState>();
+            // StateMachine.ChangeState<PlayerTurnGameState>();
         }
     }
 

@@ -7,6 +7,9 @@ public class TurnGameUIController : MonoBehaviour
     [SerializeField] Button _playerEndTurnBtn = null;
     [SerializeField] GameObject _winScreen = null;
     [SerializeField] GameObject _loseScreen = null;
+    [SerializeField] TurnGameSM turnGameSM;
+    [SerializeField] Slider[] playerHealths;
+    [SerializeField] Slider[] enemyHealths;
 
     private void OnEnable()
     {
@@ -22,12 +25,38 @@ public class TurnGameUIController : MonoBehaviour
         EnemyTurnGameState.EnemyTurnEnded -= OnEnemyTurnEnded;
         TurnGameWinState.GameWin -= OnVictory;
         TurnGameLoseState.GameLose -= OnDefeat;
+
+        foreach (CharacterSM playerSM in turnGameSM.PlayerCharacters)
+        { playerSM.OnHealthChanged -= UpdatePlayerHealth; }
+
+        foreach (CharacterSM enemySM in turnGameSM.EnemyCharacters)
+        { enemySM.OnHealthChanged -= UpdateEnemyHealth; }
     }
 
     void Start()
     {
         _enemyThinkingTextUI.gameObject.SetActive(false);
         _playerEndTurnBtn.interactable = true;
+
+        foreach (CharacterSM playerSM in turnGameSM.PlayerCharacters)
+        { playerSM.OnHealthChanged += UpdatePlayerHealth; }
+
+        foreach (CharacterSM enemySM in turnGameSM.EnemyCharacters)
+        { enemySM.OnHealthChanged += UpdateEnemyHealth; }
+    }
+
+    private void UpdatePlayerHealth()
+    {
+        playerHealths[0].value = Mathf.InverseLerp(0, turnGameSM.PlayerCharacters[0].maxHealth, turnGameSM.PlayerCharacters[0].currentHealth); 
+        playerHealths[1].value = Mathf.InverseLerp(0, turnGameSM.PlayerCharacters[1].maxHealth, turnGameSM.PlayerCharacters[1].currentHealth); 
+        playerHealths[2].value = Mathf.InverseLerp(0, turnGameSM.PlayerCharacters[2].maxHealth, turnGameSM.PlayerCharacters[2].currentHealth); 
+    }
+
+    private void UpdateEnemyHealth()
+    {
+        enemyHealths[0].value = Mathf.InverseLerp(0, turnGameSM.EnemyCharacters[0].maxHealth, turnGameSM.EnemyCharacters[0].currentHealth); 
+        enemyHealths[1].value = Mathf.InverseLerp(0, turnGameSM.EnemyCharacters[1].maxHealth, turnGameSM.EnemyCharacters[1].currentHealth); 
+        enemyHealths[2].value = Mathf.InverseLerp(0, turnGameSM.EnemyCharacters[2].maxHealth, turnGameSM.EnemyCharacters[2].currentHealth);
     }
 
     void OnEnemyTurnBegan()

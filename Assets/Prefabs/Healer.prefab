@@ -632,8 +632,9 @@ MonoBehaviour:
   weaponEquipped: {fileID: 93683115421462507}
   weaponUnequipped: {fileID: 93683116630274054}
   uiController: {fileID: 5756486721818512192}
-  _maxHealth: 100
-  _currentHealth: 100
+  maxHealth: 100
+  currentHealth: 100
+  boosted: 0
 --- !u!136 &6981192411292282137
 CapsuleCollider:
   m_ObjectHideFlags: 0

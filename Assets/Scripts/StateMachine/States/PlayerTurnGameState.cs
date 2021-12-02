@@ -15,12 +15,6 @@ public class PlayerTurnGameState : TurnGameState
         Debug.Log("Player Turn: ...Entering");
         _playerTurnTextUI.gameObject.SetActive(true);
 
-        Debug.Log("Setup: Setting up players");
-        foreach (CharacterSM playerSM in StateMachine.PlayerCharacters)
-        {
-            playerSM.SetupSM();
-        }
-
         _playerTurnCount++;
         _playerTurnTextUI.text = "Player Turn: " + _playerTurnCount.ToString();
         // hook into events

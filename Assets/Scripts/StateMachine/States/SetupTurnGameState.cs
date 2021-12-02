@@ -20,7 +20,11 @@ public class SetupTurnGameState : TurnGameState
             _activated = true;
 
             // Set up players and enemies
-            
+            Debug.Log("Setup: Setting up players");
+            foreach (CharacterSM playerSM in StateMachine.PlayerCharacters)
+            {
+                playerSM.SetupSM();
+            }
             Debug.Log("Setup: Setting up enemies");
             foreach (CharacterSM enemySM in StateMachine.EnemyCharacters)
             {

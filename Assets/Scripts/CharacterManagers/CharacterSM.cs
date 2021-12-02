@@ -1,20 +1,19 @@
 using System;
 using UnityEngine;
 
-public class CharacterSM : StateMachine
+public class CharacterSM : MonoBehaviour
 {
     [SerializeField] private string characterName;
     [SerializeField] private GameObject weaponEquipped;
     [SerializeField] private GameObject weaponUnequipped;
     [SerializeField] private CharacterUIController uiController;
-    [SerializeField] private int _maxHealth;
-    [SerializeField] private int _currentHealth;
-    protected int maxHealth { get; private set; }
-    protected int currentHealth { get; private set; }
+    [SerializeField] public int maxHealth;
+    [SerializeField] public int currentHealth;
     protected Animator animator { get; private set; }
     public bool boosted = false;
     public event Action OnHoverStart;
     public event Action OnHoverEnd;
+    public event Action OnHealthChanged;
     private bool mouseHover;
     public bool MouseHover
     {
@@ -34,12 +33,25 @@ public class CharacterSM : StateMachine
         animator = GetComponent<Animator>();
     }
 
-    private void Update() {
-        if(mouseHover && Input.GetMouseButtonDown(0))
-            uiController.SelectCharacter(true);
-        if(Input.GetKeyDown(KeyCode.A))
+    private void Update()
+    {
+        if (mouseHover)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (PlayerManager.Instance.currentActor == null)
+                    PlayerManager.Instance.currentActor = this;
+                else if (PlayerManager.Instance.currentTarget == null)
+                    PlayerManager.Instance.currentTarget = this;
+                else
+                    return;
+            }
+            if(Input.GetMouseButtonDown(1))
+                TakeDamage(PlayerManager.Instance.currentTarget, 20);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
             animator.SetTrigger("Primary");
-        if(Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
             animator.SetTrigger("Secondary");
     }
 
@@ -65,9 +77,7 @@ public class CharacterSM : StateMachine
 
     void SetupCharacter()
     {
-        maxHealth = _maxHealth;
-        currentHealth = _currentHealth;
-        Debug.Log("Creating " + characterName + " with " + _currentHealth + " health.");
+        Debug.Log("Creating " + characterName + " with " + currentHealth + " health.");
         animator.SetTrigger("DrawWeapon");
     }
 
@@ -83,18 +93,28 @@ public class CharacterSM : StateMachine
         weaponUnequipped.SetActive(true);
     }
 
+    protected void SelectCharacter()
+    {
+        uiController.SelectCharacter(true);
+
+    }
+
     protected void Hovering(bool value)
     {
 
     }
 
-    public void Heal()
+    public void Heal(CharacterSM target, int amount)
     {
-
+        target.currentHealth += amount;
+        target.currentHealth = Mathf.Clamp(target.currentHealth, 0, target.maxHealth);
+        OnHealthChanged.Invoke();
     }
 
-    public void TakeDamage()
+    public void TakeDamage(CharacterSM target, int amount)
     {
-
+        target.currentHealth -= amount;
+        target.currentHealth = Mathf.Clamp(target.currentHealth, 0, target.maxHealth);
+        OnHealthChanged.Invoke();
     }
 }
