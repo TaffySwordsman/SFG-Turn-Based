@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerTurnGameState : TurnGameState
 {
+    public static event Action PlayerTurnBegan;
+    public static event Action PlayerTurnEnded;
+
     [SerializeField] Text _playerTurnTextUI = null;
     int _playerTurnCount = 0;
 
@@ -38,7 +42,7 @@ public class PlayerTurnGameState : TurnGameState
         // Enemy Calculations
         if (_playerTurnCount > 2)
         {
-            int randInt = Random.Range(0, 10);
+            int randInt = UnityEngine.Random.Range(0, 10);
             if (randInt > 5)
                 StateMachine.ChangeState<TurnGameWinState>();
             else
