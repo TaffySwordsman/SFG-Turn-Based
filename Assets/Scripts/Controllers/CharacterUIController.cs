@@ -29,26 +29,32 @@ public class CharacterUIController : MonoBehaviour
 
     public void Hovering(bool value)
     {
-        if(!isSelected)
+        if (!isSelected)
             cursor.gameObject.SetActive(value);
     }
 
     public void SelectCharacter(bool selected)
     {
         isSelected = selected;
-        if(selected)
+        if (selected)
+        {
             cursor.color = selectedColor;
+            cursor.gameObject.SetActive(true);
+        }
         else
+        {
             cursor.color = hoverColor;
+            cursor.gameObject.SetActive(false);
+        }
     }
 
     void OnEnemyTurnBegan()
     {
-        cursor.gameObject.SetActive(true);
+        // cursor.gameObject.SetActive(true);
     }
 
     void OnEnemyTurnEnded()
     {
-        cursor.gameObject.SetActive(false);
+        // cursor.gameObject.SetActive(false);
     }
 }

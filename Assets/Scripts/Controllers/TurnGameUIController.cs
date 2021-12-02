@@ -17,6 +17,7 @@ public class TurnGameUIController : MonoBehaviour
         EnemyTurnGameState.EnemyTurnEnded += OnEnemyTurnEnded;
         TurnGameWinState.GameWin += OnVictory;
         TurnGameLoseState.GameLose += OnDefeat;
+        PlayerTurnGameState.PlayerMovesExhausted += OnPlayerMovesExhausted;
     }
 
     private void OnDisable()
@@ -25,6 +26,7 @@ public class TurnGameUIController : MonoBehaviour
         EnemyTurnGameState.EnemyTurnEnded -= OnEnemyTurnEnded;
         TurnGameWinState.GameWin -= OnVictory;
         TurnGameLoseState.GameLose -= OnDefeat;
+        PlayerTurnGameState.PlayerMovesExhausted -= OnPlayerMovesExhausted;
 
         foreach (CharacterSM playerSM in turnGameSM.PlayerCharacters)
         { playerSM.OnHealthChanged -= UpdatePlayerHealth; }
@@ -36,7 +38,7 @@ public class TurnGameUIController : MonoBehaviour
     void Start()
     {
         _enemyThinkingTextUI.gameObject.SetActive(false);
-        _playerEndTurnBtn.interactable = true;
+        _playerEndTurnBtn.interactable = false;
 
         foreach (CharacterSM playerSM in turnGameSM.PlayerCharacters)
         { playerSM.OnHealthChanged += UpdatePlayerHealth; }
@@ -66,6 +68,12 @@ public class TurnGameUIController : MonoBehaviour
     }
 
     void OnEnemyTurnEnded()
+    {
+        _enemyThinkingTextUI.gameObject.SetActive(false);
+        // _playerEndTurnBtn.interactable = true;
+    }
+
+    void OnPlayerMovesExhausted()
     {
         _enemyThinkingTextUI.gameObject.SetActive(false);
         _playerEndTurnBtn.interactable = true;

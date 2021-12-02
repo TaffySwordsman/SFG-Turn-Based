@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance { get { return _instance; } }
     public CharacterSM currentActor;
     public CharacterSM currentTarget;
+    PlayerTurnGameState playerTurnGameState;
 
     private void Awake()
     {
@@ -18,11 +19,27 @@ public class PlayerManager : MonoBehaviour
         } else {
             _instance = this;
         }
+        playerTurnGameState = FindObjectOfType<PlayerTurnGameState>();
     }
 
     public void ResetTargets()
     {
         currentActor = null;
         currentTarget = null;
+    }
+
+    public void SelectActor(CharacterSM actor)
+    {
+        actor.SelectCharacter(true);
+    }
+
+    public void DeselectActor(CharacterSM actor)
+    {
+        actor.SelectCharacter(false);
+    }
+
+    public void NextPlayer()
+    {
+        playerTurnGameState.NextPlayer();
     }
 }

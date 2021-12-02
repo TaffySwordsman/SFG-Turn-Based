@@ -39,20 +39,18 @@ public class CharacterSM : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (PlayerManager.Instance.currentActor == null)
-                    PlayerManager.Instance.currentActor = this;
-                else if (PlayerManager.Instance.currentTarget == null)
-                    PlayerManager.Instance.currentTarget = this;
-                else
-                    return;
+                PlayerManager.Instance.currentTarget = this;
+                PlayerManager.Instance.currentActor.Primary();
+                PlayerManager.Instance.NextPlayer();
             }
-            if(Input.GetMouseButtonDown(1))
-                TakeDamage(PlayerManager.Instance.currentTarget, 20);
+            if (Input.GetMouseButtonDown(1))
+            {
+                PlayerManager.Instance.currentTarget = this;
+                PlayerManager.Instance.currentActor.Secondary();
+                PlayerManager.Instance.NextPlayer();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.A))
-            animator.SetTrigger("Primary");
-        if (Input.GetKeyDown(KeyCode.S))
-            animator.SetTrigger("Secondary");
+
     }
 
     void OnMouseEnter()
@@ -93,15 +91,24 @@ public class CharacterSM : MonoBehaviour
         weaponUnequipped.SetActive(true);
     }
 
-    protected void SelectCharacter()
+    public void SelectCharacter(bool selected)
     {
-        uiController.SelectCharacter(true);
-
+        uiController.SelectCharacter(selected);
     }
 
     protected void Hovering(bool value)
     {
 
+    }
+
+    public void Primary()
+    {
+        animator.SetTrigger("Primary");
+    }
+
+    public void Secondary()
+    {
+        animator.SetTrigger("Secondary");
     }
 
     public void Heal(CharacterSM target, int amount)
